@@ -15,7 +15,7 @@ const UserCard = ({ id, name, email }) => {
     variables: { id },
   });
   return (
-    <Card key={id}>
+    <Card>
       <CardHeader
         avatar={<img src={`https://www.gravatar.com/avatar/${md5(email)}`} alt="" />}
         title={name}

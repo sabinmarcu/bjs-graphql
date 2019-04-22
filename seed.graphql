@@ -1,0 +1,10 @@
+mutation {
+  createUser(data: { name: "Sabin Marcu", email: "sabinmarcu@gmail.com", isAdmin: true }) {
+    id
+  }
+}
+mutation {
+  createUser(data: { name: "Diana Gagean", email: "diana.gagean@gmail.com" }) {
+    id
+  }
+}

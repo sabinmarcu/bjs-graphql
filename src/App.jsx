@@ -1,51 +1,30 @@
 import React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Menu,
-  MenuItem,
-} from '@material-ui/core';
-import {
-  Menu as MenuIcon,
-} from 'mdi-material-ui';
+import { Route } from 'react-router-dom';
+import { observer, useObservable } from 'mobx-react-lite';
 
-import useNavHandler from './hooks/navmenu';
-import UserList from './components/UserList';
+import UserStore from './mobx/user';
 
-const menuOrigin = {
-  vertical: 'top',
-  horizontal: 'right',
-};
+import NavBar from './components/NavBar';
+
+import HomeScreen from './routes/Home';
+import LoginScreen from './routes/Login';
+import UsersListScreen from './routes/Users';
+
 const App = () => {
-  const {
-    open, anchorEl, onClick, onClose,
-  } = useNavHandler();
+  const { isLoggedIn } = useObservable(UserStore);
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar>
-          <div>
-            <IconButton {...{ onClick }}>
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorOrigin={menuOrigin}
-              transformOrigin={menuOrigin}
-              {...{ anchorEl, open, onClose }}
-            >
-              <MenuItem onClick={onClose}>Item</MenuItem>
-            </Menu>
-          </div>
-          <Typography variant="h6">React GQL Mobx Example</Typography>
-        </Toolbar>
-      </AppBar>
-      <div>
-        <UserList />
-      </div>
+      <NavBar />
+      {isLoggedIn ? (
+        <>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/users" component={UsersListScreen} />
+        </>
+      ) : (
+        <LoginScreen />
+      )}
     </div>
   );
 };
 
-export default App;
+export default observer(App);

@@ -3,5 +3,21 @@ query AllUsers {
     id
     name
     email
+    isAdmin
+  }
+}
+
+query GetUser($id: ID!) {
+  user(where: { id: $id }) {
+    id
+    name
+    email
+    isAdmin
+  }
+}
+
+query Login($email: String!) {
+  user(where: { email: $email }) {
+    id
   }
 }

@@ -53,8 +53,9 @@ const NewUserForm = () => {
         <TextField value={name} label="Name" onChange={onChange('name')} />
         <TextField value={email} type="email" label="Email" onChange={onChange('email')} />
         <Button
+          color="primary"
           disabled={!isValid}
-          raised={isValid}
+          variant={isValid ? 'contained' : null}
           onClick={isValid ? createUser : null}
         >
           Submit

@@ -1,8 +1,8 @@
-const { override, addDecoratorsLegacy, disableEsLint } = require('customize-cra');
-const rewireInlineImportGraphqlAst = require('react-app-rewire-inline-import-graphql-ast');
+/* eslint-disable */
+
+const { override, useBabelRc, disableEsLint } = require('customize-cra');
 
 module.exports = override(
-  addDecoratorsLegacy(),
+  useBabelRc(),
   disableEsLint(),
-  rewireInlineImportGraphqlAst,
 );

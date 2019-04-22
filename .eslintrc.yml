@@ -1,6 +1,7 @@
+parser: babel-eslint
 extends:
   - airbnb
-plugins: 
+plugins:
   - graphql
 env:
   browser: true

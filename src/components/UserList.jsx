@@ -4,7 +4,6 @@ import {
   CircularProgress, Card, CardHeader, CardContent,
 } from '@material-ui/core';
 
-import NewUser from './NewUserForm';
 import UserCard from './User';
 
 import GET_USERS from '../gql/users.query.gql';
@@ -54,9 +53,8 @@ const UserList = () => {
   return (
     <div>
       {users.map(user => (
-        <UserCard {...user} />
+        <UserCard key={user.id} {...user} />
       ))}
-      <NewUser key="newuser" />
     </div>
   );
 };

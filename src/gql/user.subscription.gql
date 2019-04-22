@@ -1,0 +1,19 @@
+subscription ReactToUserCreation {
+	user(where: { mutation_in: CREATED }) {
+		node {
+	    name
+	    email
+			id
+	  }
+	}
+}
+
+subscription ReactToUserDeletion {
+	user(where: { mutation_in: DELETED }) {
+		previousValues {
+	    name
+	    email
+			id
+	  }
+	}
+}

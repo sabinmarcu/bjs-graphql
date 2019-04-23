@@ -17,3 +17,18 @@ subscription ReactToUserDeletion {
 	  }
 	}
 }
+
+subscription ReactToUserAdminChange {
+	user(
+		where: {
+			AND: [
+				{ mutation_in: UPDATED }
+				{ updatedFields_contains: "isAdmin" }
+			]
+		}) {
+		node {
+			id
+			isAdmin
+	  }
+	}
+}

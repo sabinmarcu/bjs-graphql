@@ -36,6 +36,10 @@ class WeightStore {
     return weight / (height ** 2);
   }
 
+  @computed get averageWeight() {
+    return this.weights.reduce((prev, it) => prev + it.amount, 0) / this.weights.length;
+  }
+
   constructor() {
     reaction(
       () => this.user.id,
@@ -45,16 +49,15 @@ class WeightStore {
   }
 
   @action updateWeights = async () => {
-    if (this.user.id) {
-      try {
-        const { data: { weights } } = await ApolloClient.query({
-          query: GetWeights, variables: { id: this.user.id },
-        });
-        this.weights = weights;
-      } catch (e) {
-        this.weights = [];
+    try {
+      if (!this.user.id) {
+        throw new Error('No UserID');
       }
-    } else {
+      const { data: { weights } } = await ApolloClient.query({
+        query: GetWeights, variables: { id: this.user.id },
+      });
+      this.weights = weights;
+    } catch (e) {
       this.weights = [];
     }
   }
@@ -62,6 +65,8 @@ class WeightStore {
 
 const instance = new WeightStore();
 if (process.env.NODE_ENV === 'development') {
+  const makeInspectable = require('mobx-devtools-mst').default; // eslint-disable-line
+  makeInspectable(instance);
   window.WeightStore = instance;
 }
 

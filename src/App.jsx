@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { observer, useObservable } from 'mobx-react-lite';
+import DevTools from './devtools';
 
 import UserStore from './mobx/user';
 
@@ -23,6 +24,7 @@ const App = () => {
       ) : (
         <LoginScreen />
       )}
+      <DevTools />
     </div>
   );
 };

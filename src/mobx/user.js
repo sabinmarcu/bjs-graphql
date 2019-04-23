@@ -43,6 +43,11 @@ class UserStore {
         } catch (e) {
           this.id = null;
         }
+      } else {
+        this.name = null;
+        this.email = null;
+        this.isAdmin = null;
+        this.height = null;
       }
     });
     const id = localStorage.getItem(localStorageKey);
@@ -61,15 +66,13 @@ class UserStore {
 
   @action logout = () => {
     this.id = null;
-    this.name = null;
-    this.email = null;
-    this.isAdmin = null;
-    this.height = null;
   }
 }
 
 const instance = new UserStore();
 if (process.env.NODE_ENV === 'development') {
+  const makeInspectable = require('mobx-devtools-mst').default; // eslint-disable-line
+  makeInspectable(instance);
   window.UserStore = instance;
 }
 

@@ -10,14 +10,16 @@ import {
 
 import WeightStore from '../mobx/weight';
 
+const baseSize = [600, 200];
+const sizeRatio = baseSize[1] / baseSize[0];
 const WeightChart = () => {
-  const [[width, height], setSize] = useState([600, 300]);
-  const { weightsData, BMI } = useObservable(WeightStore);
+  const [[width, height], setSize] = useState(baseSize);
+  const { weightsData } = useObservable(WeightStore);
   const containerRef = useRef(null);
   const updateSize = () => {
     if (containerRef.current) {
       const { width: clientWidth } = containerRef.current.getBoundingClientRect();
-      setSize([clientWidth, height]);
+      setSize([clientWidth - 50, sizeRatio * clientWidth]);
     }
   };
   useEffect(updateSize, [containerRef]);
@@ -41,7 +43,6 @@ const WeightChart = () => {
           </LineChart>
         </div>
       </CardContent>
-      <CardHeader title="Your BMI" subheader={BMI} />
     </Card>
   );
 };

@@ -21,3 +21,13 @@ mutation SetHeight($id: ID!, $height: Float!) {
     height
   }
 }
+
+mutation SetAdmin($id: ID!, $isAdmin: Boolean!) {
+  updateUser(
+    where: {id: $id}
+    data: {isAdmin: $isAdmin}
+  ) {
+    id
+    isAdmin
+  }
+}

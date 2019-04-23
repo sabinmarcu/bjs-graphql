@@ -15,6 +15,8 @@ class UserStore {
 
   @observable isAdmin;
 
+  @observable height;
+
   @computed get isLoggedIn() {
     return !!this.id && this.id !== 'null';
   }
@@ -24,13 +26,21 @@ class UserStore {
       localStorage.setItem(localStorageKey, this.id);
       if (this.id) {
         try {
+          console.log(GetUser);
           const response = await ApolloClient.query(
             { query: GetUser, variables: { id: this.id } },
           );
-          const { data: { user: { name, email, isAdmin } } } = response;
+          const {
+            data: {
+              user: {
+                name, email, isAdmin, height,
+              },
+            },
+          } = response;
           this.name = name;
           this.email = email;
           this.isAdmin = isAdmin;
+          this.height = height;
         } catch (e) {
           this.id = null;
         }
@@ -57,6 +67,7 @@ class UserStore {
     this.name = null;
     this.email = null;
     this.isAdmin = null;
+    this.height = null;
   }
 }
 

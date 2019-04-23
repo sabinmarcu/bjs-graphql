@@ -11,3 +11,13 @@ mutation DeleteUser($id: ID!) {
     id
   }
 }
+
+mutation SetHeight($id: ID!, $height: Float!) {
+  updateUser(
+    where: {id: $id}
+    data: {height: $height}
+  ) {
+    id
+    height
+  }
+}

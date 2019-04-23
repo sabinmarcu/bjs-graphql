@@ -3,4 +3,13 @@ type User {
   name: String!
   email: String! @unique
   isAdmin: Boolean! @default(value: "false")
+  height: Float
+}
+
+type Weight {
+  id: ID! @unique
+  belongsTo: User
+  amount: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

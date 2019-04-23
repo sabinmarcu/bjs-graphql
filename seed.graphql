@@ -1,10 +1,65 @@
 mutation {
-  createUser(data: { name: "Sabin Marcu", email: "sabinmarcu@gmail.com", isAdmin: true }) {
+  createUser(data: {
+    name: "Sabin Marcu",
+    email: "sabinmarcu@gmail.com",
+    isAdmin: true,
+    height: 1.73
+  }) {
     id
   }
 }
 mutation {
   createUser(data: { name: "Diana Gagean", email: "diana.gagean@gmail.com" }) {
+    id
+  }
+}
+mutation {
+  createWeight(
+    data: {
+      belongsTo: { connect: { email: "sabinmarcu@gmail.com" } }
+      amount: 30
+    }
+  ) {
+    id
+  }
+}
+mutation {
+  createWeight(
+    data: {
+      belongsTo: { connect: { email: "sabinmarcu@gmail.com" } }
+      amount: 40
+    }
+  ) {
+    id
+  }
+}
+mutation {
+  createWeight(
+    data: {
+      belongsTo: { connect: { email: "sabinmarcu@gmail.com" } }
+      amount: 60
+    }
+  ) {
+    id
+  }
+}
+mutation {
+  createWeight(
+    data: {
+      belongsTo: { connect: { email: "sabinmarcu@gmail.com" } }
+      amount: 55
+    }
+  ) {
+    id
+  }
+}
+mutation {
+  createWeight(
+    data: {
+      belongsTo: { connect: { email: "sabinmarcu@gmail.com" } }
+      amount: 59
+    }
+  ) {
     id
   }
 }

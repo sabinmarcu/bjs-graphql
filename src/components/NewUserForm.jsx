@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from 'react-apollo-hooks';
 import {
-  Card, CardHeader, CardContent, TextField, Button,
+  Card, CardHeader, CardContent, CardActions, TextField, Button,
 } from '@material-ui/core';
 
 import { CreateUser } from '../gql/user.mutation.gql';
@@ -52,6 +52,8 @@ const NewUserForm = () => {
       <CardContent>
         <TextField value={name} label="Name" onChange={onChange('name')} />
         <TextField value={email} type="email" label="Email" onChange={onChange('email')} />
+      </CardContent>
+      <CardActions>
         <Button
           color="primary"
           disabled={!isValid}
@@ -60,7 +62,7 @@ const NewUserForm = () => {
         >
           Submit
         </Button>
-      </CardContent>
+      </CardActions>
     </Card>
   );
 };

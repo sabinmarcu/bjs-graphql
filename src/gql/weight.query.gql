@@ -1,0 +1,11 @@
+query GetWeights($id: ID!) {
+  weights(
+    where: {
+      belongsTo: { id: $id }
+    }
+  ) {
+    id
+    amount
+    createdAt
+  }
+}

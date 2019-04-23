@@ -1,5 +1,13 @@
 import React from 'react';
 
-const HomeScreen = () => <h1>Home</h1>;
+import HeightForm from '../components/HeightForm';
+import WeightChart from '../components/WeightChart';
+
+const HomeScreen = () => (
+  <div>
+    <HeightForm />
+    <WeightChart />
+  </div>
+);
 
 export default HomeScreen;

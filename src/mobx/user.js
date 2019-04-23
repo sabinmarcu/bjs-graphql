@@ -26,7 +26,6 @@ class UserStore {
       localStorage.setItem(localStorageKey, this.id);
       if (this.id) {
         try {
-          console.log(GetUser);
           const response = await ApolloClient.query(
             { query: GetUser, variables: { id: this.id } },
           );
@@ -57,9 +56,7 @@ class UserStore {
       );
       const { data: { user: { id } } } = response;
       this.id = id;
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { } // eslint-disable-line
   }
 
   @action logout = () => {

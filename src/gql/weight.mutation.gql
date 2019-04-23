@@ -1,0 +1,12 @@
+mutation AddWeight($id: ID!, $weight: Float!) {
+  createWeight(
+    data: {
+      belongsTo: { connect: { id: $id } }
+      amount: $weight
+    }
+  ) {
+    id
+    amount
+    createdAt
+  }
+}
